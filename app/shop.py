@@ -1,6 +1,7 @@
 import dataclasses
 from typing import List, Dict
 
+
 @dataclasses.dataclass
 class Shop:
     name: str

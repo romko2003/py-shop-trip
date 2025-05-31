@@ -35,7 +35,8 @@ def shop_trip() -> None:
 
     shops: List[Shop] = []
     for s_data in shops_data:
-        shops.append(Shop(s_data["name"], s_data["location"], s_data["products"]))
+        shops.append(Shop(s_data["name"],
+                          s_data["location"], s_data["products"]))
 
     customers: List[Customer] = []
     for c_data in customers_data:
@@ -61,8 +62,10 @@ def shop_trip() -> None:
                                                   shop.location)
 
             fuel_liters_one_way = \
-                customer.car.calculate_fuel_liters_for_distance(distance_to_shop)
-            fuel_cost_round_trip = (fuel_liters_one_way * 2) * fuel_price  # Used fuel_price
+                (customer.car.calculate_fuel_liters_for_distance
+                 (distance_to_shop))
+            fuel_cost_round_trip = ((fuel_liters_one_way * 2)
+                                    * fuel_price)
 
             products_cost_at_shop = 0.0
             can_fulfill_cart = True
@@ -78,17 +81,20 @@ def shop_trip() -> None:
             all_shop_trip_costs_for_printing.append(
                 (shop.name, total_trip_cost_for_printing))
 
-            if can_fulfill_cart and customer.money >= total_trip_cost_for_printing:
+            if (can_fulfill_cart and customer.money >=
+                    total_trip_cost_for_printing):
                 if total_trip_cost_for_printing < cheapest_total_trip_cost:
                     cheapest_total_trip_cost = total_trip_cost_for_printing
                     best_shop_for_customer = shop
 
         for shop_name, cost in all_shop_trip_costs_for_printing:
-            print(f"{customer.name}'s trip to the {shop_name} costs {cost:.2f}")
+            print(f"{customer.name}'s trip to the {shop_name} "
+                  f"costs {cost:.2f}")
 
         if best_shop_for_customer is None:
-            print(f"{customer.name} doesn't have enough money to make a "
-                  "purchase in any shop")  # Broken long line
+            print(f"{customer.name} doesn't "
+                  f"have enough money to make a "
+                  "purchase in any shop")
             print()
             continue
 
@@ -113,7 +119,7 @@ def shop_trip() -> None:
             print(f"{quantity} {product}s for {formatted_item_cost} dollars")
 
         formatted_receipt_total = (int(receipt_products_total_cost) if
-                                   receipt_products_total_cost == \
+                                   receipt_products_total_cost ==
                                    int(receipt_products_total_cost) else
                                    receipt_products_total_cost)
         print(f"Total cost is {formatted_receipt_total} dollars")
@@ -128,9 +134,11 @@ def shop_trip() -> None:
         fuel_liters_deduction = \
             customer.car.calculate_fuel_liters_for_distance(
                 distance_for_fuel_deduction) * 2
-        fuel_cost_deduction = fuel_liters_deduction * fuel_price  # Used fuel_price
+        fuel_cost_deduction = (fuel_liters_deduction
+                               * fuel_price)
 
-        total_money_spent_on_trip = receipt_products_total_cost + fuel_cost_deduction
+        total_money_spent_on_trip = (
+                receipt_products_total_cost + fuel_cost_deduction)
         customer.money -= total_money_spent_on_trip
 
         print(f"{customer.name} now has {customer.money:.2f} dollars")

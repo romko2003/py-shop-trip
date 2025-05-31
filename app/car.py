@@ -9,6 +9,7 @@ class Car:
         """
         Розраховує кількість літрів палива, необхідних для заданої відстані.
         """
-        if distance_km < 0:  # Запобігаємо від'ємній відстані
+        if distance_km < 0:
             distance_km = 0
-        return (distance_km / 100.0) * self.fuel_consumption_per_100km_consumption_per_100km
+        return ((distance_km / 100.0)
+                * self.fuel_consumption_per_100km_consumption_per_100km)
