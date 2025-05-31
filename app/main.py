@@ -61,7 +61,8 @@ def shop_trip() -> None:
                                                   shop.location)
 
             fuel_liters_one_way = \
-                customer.car.calculate_fuel_liters_for_distance(distance_to_shop)
+                (customer.car.calculate_fuel_liters_for_distance
+                 (distance_to_shop))
             fuel_cost_round_trip = (fuel_liters_one_way * 2) * fuel_price
 
             products_cost_at_shop = 0.0
