@@ -81,8 +81,8 @@ def shop_trip() -> None:
             all_shop_trip_costs_for_printing.append(
                 (shop.name, total_trip_cost_for_printing))
 
-            if (can_fulfill_cart and customer.money >=
-                    total_trip_cost_for_printing):
+            if (can_fulfill_cart and customer.money
+                    >= total_trip_cost_for_printing):
                 if total_trip_cost_for_printing < cheapest_total_trip_cost:
                     cheapest_total_trip_cost = total_trip_cost_for_printing
                     best_shop_for_customer = shop
@@ -114,13 +114,14 @@ def shop_trip() -> None:
             cost_item = price * quantity
             receipt_products_total_cost += cost_item
 
-            formatted_item_cost = (int(cost_item) if cost_item == int(cost_item)
+            formatted_item_cost = (int(cost_item)
+                                   if cost_item == int(cost_item)
                                    else cost_item)
             print(f"{quantity} {product}s for {formatted_item_cost} dollars")
 
         formatted_receipt_total = (int(receipt_products_total_cost) if
-                                   receipt_products_total_cost ==
-                                   int(receipt_products_total_cost) else
+                                   receipt_products_total_cost
+                                   == int(receipt_products_total_cost) else
                                    receipt_products_total_cost)
         print(f"Total cost is {formatted_receipt_total} dollars")
         print("See you again!")
@@ -137,8 +138,9 @@ def shop_trip() -> None:
         fuel_cost_deduction = (fuel_liters_deduction
                                * fuel_price)
 
-        total_money_spent_on_trip = (
-                receipt_products_total_cost + fuel_cost_deduction)
+        total_money_spent_on_trip = \
+            (receipt_products_total_cost
+             + fuel_cost_deduction)
         customer.money -= total_money_spent_on_trip
 
         print(f"{customer.name} now has {customer.money:.2f} dollars")
