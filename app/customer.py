@@ -16,4 +16,4 @@ class Customer:
     initial_location: List[float] = dataclasses.field(init=False)
 
     def __post_init__(self) -> None:
-              self.initial_location = list(self.current_location)
+        self.initial_location = list(self.current_location)
