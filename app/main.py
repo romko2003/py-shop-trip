@@ -22,7 +22,7 @@ def shop_trip(path: str = "config.json") -> None:
         for customer_data in config["customers"]
     ]
 
-    for customer in customers:
+    for idx, customer in enumerate(customers):
         print(f"{customer.name} has {customer.money} dollars")
 
         trip_options = []
@@ -39,6 +39,8 @@ def shop_trip(path: str = "config.json") -> None:
         if not trip_options:
             print(f"{customer.name} doesn't have enough money "
                   f"to make a purchase in any shop")
+            if idx < len(customers) - 1:
+                print()
             continue
 
         trip_options.sort(key=lambda x: x[0])
@@ -47,6 +49,8 @@ def shop_trip(path: str = "config.json") -> None:
         if customer.money < best_price:
             print(f"{customer.name} doesn't have enough money "
                   f"to make a purchase in any shop")
+            if idx < len(customers) - 1:
+                print()
             continue
 
         print(f"{customer.name} rides to {best_shop.name}")
@@ -55,3 +59,6 @@ def shop_trip(path: str = "config.json") -> None:
                      fuel_price, date=datetime(2021, 1, 4, 12, 33, 41))
         print(f"{customer.name} rides home")
         print(f"{customer.name} now has {customer.money:.2f} dollars")
+
+        if idx < len(customers) - 1:
+            print()
