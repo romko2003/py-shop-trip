@@ -29,24 +29,29 @@ def shop_trip(path="config.json"):
         for shop in shops:
             total_price = customer.get_trip_total_cost(shop, fuel_price)
             if total_price is not None:
-                print(f"{customer.name}'s trip to the {shop.name} costs {total_price:.2f}")
+                print(f"{customer.name}'s trip to the {shop.name} "
+                      f"costs {total_price:.2f}")
                 trip_options.append((total_price, shop))
             else:
-                print(f"{customer.name}'s trip to the {shop.name} cannot be completed")
+                print(f"{customer.name}'s trip to the {shop.name} "
+                      f"cannot be completed")
 
         if not trip_options:
-            print(f"{customer.name} doesn't have enough money to make a purchase in any shop")
+            print(f"{customer.name} doesn't have enough money "
+                  f"to make a purchase in any shop")
             continue
 
         trip_options.sort(key=lambda x: x[0])
         best_price, best_shop = trip_options[0]
 
         if customer.money < best_price:
-            print(f"{customer.name} doesn't have enough money to make a purchase in any shop")
+            print(f"{customer.name} doesn't have enough money "
+                  f"to make a purchase in any shop")
             continue
 
         print(f"{customer.name} rides to {best_shop.name}")
         print()
-        customer.buy_products(best_shop, fuel_price, date=datetime(2021, 1, 4, 12, 33, 41))
+        customer.buy_products(best_shop, fuel_price,
+                              date=datetime(2021, 1, 4, 12, 33, 41))
         print(f"{customer.name} rides home")
         print(f"{customer.name} now has {customer.money:.2f} dollars")
