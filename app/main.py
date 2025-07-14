@@ -27,7 +27,7 @@ def shop_trip(path="config.json"):
 
         trip_options = []
         for shop in shops:
-            total_price = customer.get_trip_total_cost(shop, fuel_price)
+            total_price = customer.calculate_trip_cost(shop, fuel_price)
             if total_price is not None:
                 print(f"{customer.name}'s trip to the {shop.name} "
                       f"costs {total_price:.2f}")
@@ -51,7 +51,7 @@ def shop_trip(path="config.json"):
 
         print(f"{customer.name} rides to {best_shop.name}")
         print()
-        customer.buy_products(best_shop, fuel_price,
-                              date=datetime(2021, 1, 4, 12, 33, 41))
+        customer.buy(best_shop,
+                     fuel_price, date=datetime(2021, 1, 4, 12, 33, 41))
         print(f"{customer.name} rides home")
         print(f"{customer.name} now has {customer.money:.2f} dollars")

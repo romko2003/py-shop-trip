@@ -3,12 +3,8 @@ import dataclasses
 
 @dataclasses.dataclass
 class Car:
-    fuel_consumption_per_100km: float
+    brand: str
+    fuel_consumption: float  # per 100 km
 
-    def calculate_fuel_liters_for_distance(self, distance_km: float) -> float:
-        """
-        Розраховує кількість літрів палива, необхідних для заданої відстані.
-        """
-        if distance_km < 0:
-            distance_km = 0
-        return (distance_km / 100.0) * self.fuel_consumption_per_100km
+    def fuel_needed(self, distance: float) -> float:
+        return (distance / 100.0) * self.fuel_consumption
