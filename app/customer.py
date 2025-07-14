@@ -50,7 +50,8 @@ class Customer:
         print("You have bought:")
         for product, quantity in self.product_cart.items():
             unit_price = shop.products[product]
-            print(f"{quantity} {product}s for {unit_price * quantity:g} dollars")
+            print(f"{quantity} {product}s "
+                  f"for {unit_price * quantity:g} dollars")
         print(f"Total cost is {product_cost} dollars")
         print("See you again!\n")
 
