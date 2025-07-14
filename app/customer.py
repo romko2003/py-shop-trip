@@ -23,7 +23,8 @@ class Customer:
         except KeyError:
             return None
 
-    def calculate_trip_cost(self, shop: Shop, fuel_price: float) -> float | None:
+    def calculate_trip_cost(self, shop: Shop, fuel_price: float) \
+            -> float | None:
         if not all(product in shop.products for product in self.product_cart):
             return None
 
